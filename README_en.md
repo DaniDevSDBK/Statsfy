@@ -3,6 +3,7 @@
 **MauiTune** is a demo application created to explore and test the integration of **.NET MAUI** with **OAuth 2.0** and the **Spotify API**. The primary goal of this project is to provide an educational platform for learning and experimenting with these technologies, and it is not intended for commercial use.
 
 ## Description
+(Please be aware that some files or information may be missing or excluded due to security considerations.)
 
 **MauiTune** offers a practical experience for developers interested in:
 
