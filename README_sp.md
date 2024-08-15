@@ -3,6 +3,7 @@
 **MauiTune** es una aplicación de demostración creada para explorar y probar la integración de **.NET MAUI** con **OAuth 2.0** y la **API de Spotify**. Este proyecto tiene como objetivo principal proporcionar una plataforma educativa para aprender y experimentar con estas tecnologías, y no está destinado a fines comerciales.
 
 ## Descripción
+(Tenga en cuenta que algunos archivos o información pueden estar excluidos debido a consideraciones de seguridad.)
 
 **MauiTune** ofrece una experiencia práctica para desarrolladores interesados en:
 
