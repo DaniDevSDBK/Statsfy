@@ -1,0 +1,36 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Statsfy"
+             UserAppTheme="Light"
+             x:Class="Statsfy.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <!--#region Styles-->
+                
+                    <!--#region DefaultSyles-->
+                    <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                    <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                    <!--#endregion-->
+                
+                    <!--#region ShellStyles-->
+                    <ResourceDictionary Source="Resources/Styles/ShellStyles/FlyoutHeaderStyles.xaml" />
+                    <ResourceDictionary Source="Resources/Styles/ShellStyles/FlyoutFooterStyles.xaml" />
+                    <!--#endregion-->
+                
+                <!--#endregion-->
+                
+                <!--#region Templates-->
+                
+                    <!--#region ShellTemplates-->
+                    
+                    <!--#endregion-->
+                
+                <!--#endregion-->
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

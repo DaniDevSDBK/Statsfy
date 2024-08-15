@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:Statsfy.ViewModel"
+             x:Class="Statsfy.Views.LogInPageView">
+
+    <ContentPage.BackgroundColor>
+        Black
+    </ContentPage.BackgroundColor>
+
+    <ContentPage.BindingContext>
+        <viewmodel:LogInPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               BackgroundColor="Transparent"
+               BorderColor =" Transparent">
+            
+            <Image Source="logospotify.png"
+                   Aspect="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="150"
+                   WidthRequest="200"/>
+        </Frame>
+
+        <FlexLayout Grid.Row="3"
+                Direction="Column" 
+                JustifyContent="Center" 
+                AlignItems="Center"
+                Padding="10">
+
+            <Label BackgroundColor="#2980b9" 
+               TextColor="White"
+               Margin="0,10,0,10" />
+
+            <Button Text="Iniciar sesión"
+                Style="{StaticResource SpotifyButtonStyle}"
+                TextColor="White" 
+                Command="{Binding LoginWithSpotifyCommand}"
+                Margin="0,10,0,10" />
+
+            <Label Text="¿No tienes una cuenta? Regístrate" 
+               TextColor="White" 
+               Margin="0,10,0,10" />
+
+            <ActivityIndicator Color="White" 
+                            IsRunning="{Binding IsBusy}" 
+                            IsVisible="{Binding IsBusy}" 
+                            Margin="0,10,0,10" />
+
+            <Label Text="© 2023 DaniDevSDBK on GitHub" 
+               TextColor="White" 
+               HorizontalOptions="CenterAndExpand" 
+               Margin="0,10,0,10" />
+        </FlexLayout>
+    </Grid>
+
+</ContentPage>

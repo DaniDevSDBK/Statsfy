@@ -1,0 +1,30 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:card="clr-namespace:Statsfy.Resources.ContentsView"
+             xmlns:vm ="clr-namespace:Statsfy.ViewModels"
+             x:Class="Statsfy.Views.TracksPageView"
+             Title="My Library">
+
+    <ContentPage.BindingContext>
+        <vm:TracksViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#333333" Offset="0.6" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ContentPage.Content>
+        <FlexLayout Wrap="Wrap"
+                    JustifyContent="SpaceAround">
+            <CollectionView ItemsSource="{Binding Tracks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <card:SpotifyTrackCardView />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

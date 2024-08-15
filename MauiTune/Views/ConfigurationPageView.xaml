@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm ="clr-namespace:Statsfy.ViewModel"
+             x:Class="Statsfy.Views.ConfigurationPageView">
+
+    <ContentPage.BindingContext>
+        <vm:ConfigurationPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#333333" Offset="0.6" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <StackLayout Padding="20">
+
+            <Frame CornerRadius="10" BackgroundColor="#282828" Margin="0,0,0,20">
+                <StackLayout Padding="10">
+                    <Label Text="Profile Details" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,5" />
+                    <BoxView HeightRequest="1" Color="#808080" Margin="0,5" />
+                    <Button Text="Show more" BackgroundColor="#1DB954" TextColor="White" CornerRadius="5" Margin="0,10,0,0" />
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BackgroundColor="#282828" Margin="0,0,0,20">
+                <StackLayout Padding="10">
+                    <Label Text="User Preferences" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,5" />
+                    <BoxView HeightRequest="1" Color="#808080" Margin="0,5" />
+                    <Switch IsToggled="false" OnColor="#1DB954" ThumbColor="#191414" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BackgroundColor="#282828">
+                <StackLayout Padding="10">
+                    <Label Text="About StatsFy" FontSize="18" FontAttributes="Bold" TextColor="White" Margin="0,5" />
+                    <BoxView HeightRequest="1" Color="#808080" Margin="0,5" />
+                    <Label Text="Version: 1.0.0" TextColor="White" Margin="0,10,0,0" />
+                    <Label Text="State: Trial" TextColor="White" Margin="0,10,0,20" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="StatsFy is a trial application intended solely for educational purposes and not for commercial use. The content provided by StatsFy is sourced from the " TextColor="White"/>
+                                <Span Text="Spotify" TextColor="#1DB954">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://www.spotify.com" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span Text=" API, ensuring accurate and up-to-date information directly from Spotify." TextColor="White"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="This application is licensed under the MIT License." TextColor="White" Margin="0,10,0,0" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Author: " TextColor="White"/>
+                                <Span Text="DaniDevSDBK" TextColor="#1DB954">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/DaniDevSDBK" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:card="clr-namespace:Statsfy.Resources.ContentsView"
+             xmlns:vm ="clr-namespace:Statsfy.ViewModel"
+             x:Class="Statsfy.Views.HomePageView"
+             Title="My Artists">
+    
+    <ContentPage.BindingContext>
+        <vm:HomePageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#333333" Offset="0.6" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Artists}"
+                        Wrap="Wrap"
+                        JustifyContent="Start"
+                        AlignItems="Center">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <card:SpotifyCardView WidthRequest="250" HeightRequest="250" Margin="5"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

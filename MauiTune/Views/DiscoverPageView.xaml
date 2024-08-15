@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Statsfy.Views.DiscoverPageView"
+             xmlns:local="clr-namespace:Statsfy.ViewModel"
+             xmlns:fa="clr-namespace:Statsfy.Models.IconFonts"
+             xmlns:card="clr-namespace:Statsfy.Resources.ContentsView"
+             x:Name="DiscoverView"
+             Title="Discover">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#333333" Offset="0.6" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ContentPage.BindingContext>
+        <local:DiscoverPageViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Margin="10">
+
+        <Grid BackgroundColor="Transparent" Padding="10" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
+                         Orientation="Horizontal"
+                         Spacing="10"
+                         VerticalOptions="Start">
+                
+                <SearchBar Placeholder="Buscar en Spotify" 
+                           TextColor="White" 
+                           Margin="0,0,10,0"
+                           CancelButtonColor="White"
+                           BackgroundColor="#282828" 
+                           PlaceholderColor="#B3B3B3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="FillAndExpand" 
+                           Text="{Binding UserSearchItem}" />
+
+
+                <Label Text="Filtro: "
+                       TextColor ="#B3B3B3"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"/>
+
+                <Picker ItemsSource="{Binding SearchTypes}"
+                        SelectedItem="{Binding SelectedSearchType}"
+                        HeightRequest="35"
+                        TextColor="White"
+                        BackgroundColor="#282828"
+                        TitleColor="#B3B3B3"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End" />
+
+                <Button Text="Añadir" 
+                        Margin="10,0,0,0"
+                        HeightRequest="35"
+                        BackgroundColor="#1DB954" 
+                        TextColor="White"
+                        Command="{Binding AddFilterCommand}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End" />
+            </StackLayout>
+
+            <FlexLayout BindableLayout.ItemsSource="{Binding SelectedFilters}"
+                        Wrap="Wrap"
+                        Grid.Row="2"
+                        JustifyContent="Start"
+                        AlignItems="Center"
+                        BackgroundColor="Transparent">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#282828"
+                               HeightRequest="60"
+                               Margin="0,0,5,0"
+                               Padding="2">
+
+                            <StackLayout Orientation="Horizontal"
+                                         BackgroundColor="Transparent">
+                                <Label  Text="{Binding .}"
+                                        HeightRequest="30"
+                                        TextColor="White"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="16"
+                                        Margin="5,2,5,2"/>
+
+                                <ImageButton WidthRequest="20"
+                                             BackgroundColor="transparent"
+                                             HeightRequest="20"
+                                             CornerRadius="2"
+                                             Command="{Binding BindingContext.RemoveFilterCommand, Source={x:Reference DiscoverView}}" 
+                                             CommandParameter="{Binding .}">
+                                    <ImageButton.Source>
+                                        <FontImageSource Glyph="{x:Static fa:FA6Solid900.Xmark}"/>
+                                    </ImageButton.Source>
+                                </ImageButton>
+                            </StackLayout>   
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </Grid>
+       
+        <StackLayout BackgroundColor="#282828" Padding="10" Spacing="10" Margin="10">
+            <BoxView BackgroundColor="#444" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            <StackLayout Padding="10" BackgroundColor="#282828" Spacing="10">
+                <Label Text="Descubrir" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                <Label Text="Encuentra nueva música para ti" FontSize="16" TextColor="#B3B3B3" HorizontalOptions="Center" />
+
+                <Button Text="Explorar" 
+                        BackgroundColor="#1DB954" 
+                        TextColor="White" 
+                        CornerRadius="10" 
+                        Command="{Binding SearchIntoSpotifyCommand}"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#444" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#1C1C1C">
+            <StackLayout>
+                <FlexLayout BindableLayout.ItemsSource="{Binding Artists}"
+            Wrap="Wrap"
+            JustifyContent="Start"
+            AlignItems="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <card:SpotifyCardView WidthRequest="250" HeightRequest="250" Margin="5"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding Albums}"
+            Wrap="Wrap"
+            JustifyContent="Start"
+            AlignItems="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <card:SpotifyAlbumCardView WidthRequest="250" HeightRequest="250" Margin="5"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding Tracks}"
+            Wrap="Wrap"
+            JustifyContent="Start"
+            AlignItems="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <card:SpotifyTrackCardView WidthRequest="250" HeightRequest="250" Margin="5"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+                <Label Text="Playlists: "/>
+                <FlexLayout BindableLayout.ItemsSource="{Binding Playlists}"
+            Wrap="Wrap"
+            JustifyContent="Start"
+            AlignItems="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <card:SpotifyPlaylistCardView WidthRequest="250" HeightRequest="250" Margin="5"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

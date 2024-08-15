@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Statsfy.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Statsfy"
+    xmlns:cv="clr-namespace:Statsfy.Resources.ContentsView"
+    xmlns:view="clr-namespace:Statsfy.Views"
+    xmlns:vm ="clr-namespace:Statsfy.ViewModel"
+    xmlns:fa="clr-namespace:Statsfy.Models.IconFonts"
+    Shell.TabBarIsVisible="False">
+
+    <Shell.BindingContext>
+        <vm:ShellViewModel/>
+    </Shell.BindingContext>
+
+    <!--Header Definition-->
+    <Shell.FlyoutHeader>
+        <cv:FlyoutHeaderContentView/>
+    </Shell.FlyoutHeader>
+
+    <!--Footer Definition-->
+    <Shell.FlyoutFooter>
+        <cv:FlyoutFooterContentView/>
+    </Shell.FlyoutFooter>
+
+    <Shell.TabBarBackgroundColor>
+        <Color>
+            #1DB954
+        </Color>
+    </Shell.TabBarBackgroundColor>
+    
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1DB954" Offset="0.1" />
+            <GradientStop Color="#191414" Offset="0.6" />
+            <GradientStop Color="#191414" Offset="1.0" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>
+
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1DB954" Offset="0.5" />
+            <GradientStop Color="#191414" Offset="0.9" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ShellItemStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="ShellIconStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding FlyoutIcon}" Style="{StaticResource ShellIconStyle}" />
+
+                <Label Grid.Column="1" Text="{Binding Title}" Style="{StaticResource ShellItemStyle}" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- Routes Definition -->
+    <ShellContent Route="LogInPageView"
+                  Title="LogIn"
+                  Shell.NavBarIsVisible="False"
+                  FlyoutItemIsVisible="False"
+                  Shell.FlyoutBehavior="Disabled"
+                  Shell.FlyoutHeight="800"
+                  Shell.FlyoutWidth="400"
+                  ContentTemplate="{DataTemplate view:LogInPageView}" />
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" 
+                Shell.NavBarIsVisible="True">
+
+        <ShellContent Route="HomePageView"
+              Title="Home"
+              Icon="{FontImageSource Glyph={x:Static fa:FA6Solid900.House}, FontFamily=FA6Solid900}"
+              ContentTemplate="{DataTemplate view:HomePageView}"/>
+
+        <ShellContent Title="My Library" 
+                      Icon="{FontImageSource Glyph={x:Static fa:FA6Solid900.Book}, FontFamily=FA6Solid900}"
+                      ContentTemplate="{DataTemplate view:TracksPageView}" />
+        <ShellContent Title="Discover" 
+                      Icon="{FontImageSource Glyph={x:Static fa:FA6Solid900.Compass}, FontFamily=FA6Solid900}"
+                      ContentTemplate="{DataTemplate view:DiscoverPageView}" />
+        <ShellContent Title="Configuration"
+                      Icon="{FontImageSource Glyph={x:Static fa:FA6Solid900.Gear}, FontFamily=FA6Solid900}"
+                      ContentTemplate="{DataTemplate view:ConfigurationPageView}" />
+    </FlyoutItem>
+
+    <MenuFlyoutItem Text="Log Out" 
+                    IconImageSource="{FontImageSource Glyph={x:Static fa:FA6Solid900.ArrowLeft}, FontFamily=FA6Solid900, Color=Red}" 
+                    Command="{Binding LogOutWithSpotifyCommand}"/>
+</Shell>

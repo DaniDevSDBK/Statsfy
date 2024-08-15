@@ -1,0 +1,58 @@
+# Visual Studio
+.vs/
+*.vscode/
+*.user
+*.suo
+*.userosscache
+*.suo
+*.tmp
+*.log
+
+# Build Results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+[Ll]og/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.docstates
+
+# MAUI Specific
+bin/
+obj/
+platforms/
+resources/
+properties/
+authenticationservices/
+config/
+iconfonts/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.tmp
+*.log
+*.swp
+*.ncb
+
+# Others
+*.DS_Store
+*.idea/
+*.iml
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+*.nupkg/*.nupkg
+# NuGet
+.nuget/
+packages/
